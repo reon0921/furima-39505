@@ -41,10 +41,16 @@ Things you may want to cover:
 
 | 列名       | データ型   | 制約     | 説明                 |
 |------------|-----------|----------|---------------------|
-| id         | INTEGER   | PRIMARY KEY | ユーザーID              |
-| name       | VARCHAR   | NOT NULL | ユーザー名               |
+| id         | INTEGER   | PRIMARY KEY | ユーザーID           |
+| name       | VARCHAR   | NOT NULL | ユーザー名              |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
-| encrypted_password   | VARCHAR   | NOT NULL | パスワード              |
+| encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
+| created_at    | TIMESTAMP | NOT NULL | 出品日時             |
+| updated_at    | TIMESTAMP | NOT NULL | 更新日時             |
+|address        | STRING    | NOT NULL | 住所                |
+|phone_number   | STRING    | NOT NULL | 電話番号             |
+|created_at     | DateTime  | NOT NULL | 登録日時             |
+| updated_at    | DateTime  | NOT NULL | 更新日時             |
 
 | created_at | TIMESTAMP | NOT NULL | 作成日時               |
 | updated_at | TIMESTAMP | NOT NULL | 更新日時               |
@@ -53,22 +59,33 @@ Things you may want to cover:
 
 | 列名          | データ型   | 制約     | 説明                |
 |---------------|-----------|----------|--------------------|
-| id            | INTEGER   | PRIMARY KEY | 商品ID             |
+| id            | INTEGER   | PRIMARY KEY | 商品ID           |
 | name          | VARCHAR   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
 | price         | INTEGER   | NOT NULL | 商品の価格           |
-| seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID     |
-| created_at    | TIMESTAMP | NOT NULL | 出品日時             |
-| updated_at    | TIMESTAMP | NOT NULL | 更新日時             |
+| seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
+| category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
+| condition     | STRING    | NOT NULL | 商品の状態           |
+| availability  | INTEGER   | NOT NULL | 送料                |
+| image_url     | STRING    | NOT NULL | 画像のURL           |
+
+
 
 #### 3. 購入履歴テーブル (purchases)
 
 | 列名           | データ型   | 制約     | 説明                  |
 |----------------|-----------|----------|----------------------|
-| id             | INTEGER   | PRIMARY KEY | 購入履歴ID             |
-| buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID       |
+| id             | INTEGER   | PRIMARY KEY | 購入履歴ID          |
+| buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
 | purchase_date  | TIMESTAMP | NOT NULL | 購入日時               |
 | amount         | INTEGER   | NOT NULL | 購入金額               |
 | created_at     | TIMESTAMP | NOT NULL | 作成日時               |
 | updated_at     | TIMESTAMP | NOT NULL | 更新日時               |
+| shipping_address| STRING   | NOT NULL | 配送先情報             |
+|seller_id       | INTEGER   | NOT NULL | 商品を出品したユーザーのIDを表す|
+|payment_method  | STRING    | NOT NULL | 支払方法               |
+|status          | STRING    | NOT NULL | 購入の進行状況          |
+|rating          | INTEGER   | NOT NULL | 取引の評価やレビュー情報 |
+|review          | STRING    | NOT NULL | 評価コメントやレビュー   |
+|
