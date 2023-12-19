@@ -44,7 +44,8 @@ Things you may want to cover:
 | id         | INTEGER   | PRIMARY KEY | ユーザーID              |
 | name       | VARCHAR   | NOT NULL | ユーザー名               |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
-| password   | VARCHAR   | NOT NULL | パスワード              |
+| encrypted_password   | VARCHAR   | NOT NULL | パスワード              |
+
 | created_at | TIMESTAMP | NOT NULL | 作成日時               |
 | updated_at | TIMESTAMP | NOT NULL | 更新日時               |
 
