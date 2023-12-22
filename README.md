@@ -47,14 +47,9 @@ Things you may want to cover:
 | encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
 | created_at    | TIMESTAMP | NOT NULL | 出品日時             |
 | updated_at    | TIMESTAMP | NOT NULL | 更新日時             |
-|address        | STRING    | NOT NULL | 住所                |
 |phone_number   | STRING    | NOT NULL | 電話番号             |
-|created_at     | DateTime  | NOT NULL | 登録日時             |
-| updated_at    | DateTime  | NOT NULL | 更新日時             |
 |full_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
 |kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
-| created_at    | TIMESTAMP | NOT NULL | 作成日時             |
-| updated_at    | TIMESTAMP | NOT NULL | 更新日時              
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
 ### 2. 商品テーブル (items)
@@ -62,15 +57,13 @@ Things you may want to cover:
 | 列名          | データ型   | 制約     | 説明                |
 |---------------|-----------|----------|--------------------|
 | id            | INTEGER   | PRIMARY KEY | 商品ID           |
-| name          | VARCHAR   | NOT NULL | 商品名              |
+| name          | INTEGER   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
 | price         | INTEGER   | NOT NULL | 商品の価格           |
 | seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
 | category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
-| condition     | STRING    | NOT NULL | 商品の状態           |
+| condition_id     | INTEGER    | NOT NULL | 商品の状態           |
 | availability  | INTEGER   | NOT NULL | 送料                |
-| image_url     | STRING    | NOT NULL | 画像のURL           |
-| name          | VARCHAR   | NOT NULL | 発送元の地域         |
 | days          | INTEGER   | NOT NULL | 発送日の目安         |
 | category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
