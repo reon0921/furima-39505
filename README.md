@@ -51,11 +51,13 @@ Things you may want to cover:
 |phone_number   | STRING    | NOT NULL | 電話番号             |
 |created_at     | DateTime  | NOT NULL | 登録日時             |
 | updated_at    | DateTime  | NOT NULL | 更新日時             |
+|full_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
+|kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
+| created_at    | TIMESTAMP | NOT NULL | 作成日時             |
+| updated_at    | TIMESTAMP | NOT NULL | 更新日時              
+| birthday      | DATE      | NOT NULL | 生年月日             |
 
-| created_at | TIMESTAMP | NOT NULL | 作成日時               |
-| updated_at | TIMESTAMP | NOT NULL | 更新日時               |
-
-#### 2. 商品テーブル (items)
+### 2. 商品テーブル (items)
 
 | 列名          | データ型   | 制約     | 説明                |
 |---------------|-----------|----------|--------------------|
@@ -68,10 +70,13 @@ Things you may want to cover:
 | condition     | STRING    | NOT NULL | 商品の状態           |
 | availability  | INTEGER   | NOT NULL | 送料                |
 | image_url     | STRING    | NOT NULL | 画像のURL           |
+| name          | VARCHAR   | NOT NULL | 発送元の地域         |
+| days          | INTEGER   | NOT NULL | 発送日の目安         |
+| category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
 
 
-#### 3. 購入履歴テーブル (purchases)
+## 3. 購入履歴テーブル (purchases)
 
 | 列名           | データ型   | 制約     | 説明                  |
 |----------------|-----------|----------|----------------------|
@@ -80,6 +85,10 @@ Things you may want to cover:
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
 | purchase_date  | TIMESTAMP | NOT NULL | 購入日時               |
 | amount         | INTEGER   | NOT NULL | 購入金額               |
+| card_number    | VARCHAR(16)| NOT NULL | カード番号            |
+| expiration_date| DATE      | NOT NULL | 有効期限               |
+| security_code  | VARCHAR(4)| NOT NULL | セキュリティコード       |
+| postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
 | created_at     | TIMESTAMP | NOT NULL | 作成日時               |
 | updated_at     | TIMESTAMP | NOT NULL | 更新日時               |
 | shipping_address| STRING   | NOT NULL | 配送先情報             |
@@ -88,4 +97,3 @@ Things you may want to cover:
 |status          | STRING    | NOT NULL | 購入の進行状況          |
 |rating          | INTEGER   | NOT NULL | 取引の評価やレビュー情報 |
 |review          | STRING    | NOT NULL | 評価コメントやレビュー   |
-|
