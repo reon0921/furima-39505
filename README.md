@@ -45,7 +45,9 @@ Things you may want to cover:
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
 | encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
 |phone_number   | STRING    | NOT NULL | 電話番号             |
-|full_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
+|surname_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
+|name_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
+|surname_kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
 |kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
@@ -56,15 +58,14 @@ has_and_belongs_to_many
 
 | Column      | Type   | Options     | 説明                |
 |---------------|-----------|----------|--------------------|
-| id            | INTEGER   | PRIMARY KEY | 商品ID           |
-| id: 1,name          | INTEGER   | NOT NULL | 商品名              |
+| name          | INTEGER   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
-| price         | INTEGER   | NOT NULL | 商品の価格           |
+| price         | STRING   | NOT NULL | 商品の価格           |
 | seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
 | category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
 | condition_id     | INTEGER    | NOT NULL | 商品の状態           |
-| availability  | INTEGER   | NOT NULL | 送料                |
-| days          | INTEGER   | NOT NULL | 発送日の目安         |
+| availability_id | STRING   | NOT NULL | 送料                |
+| days_id         | STRING   | NOT NULL | 発送日の目安         |
 | category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
 ### Association
@@ -75,7 +76,6 @@ has_many
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-| id             | INTEGER   | PRIMARY KEY | 購入履歴ID          |
 | buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
 | purchase_date  | TIMESTAMP | NOT NULL | 購入日時               |
