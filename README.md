@@ -39,7 +39,7 @@ Things you may want to cover:
 
 #### 1. ユーザーテーブル (users)
 
-| 列名       | データ型   | 制約     | 説明                 |
+| Column      | Type   | Options     | 説明                 |
 |------------|-----------|----------|---------------------|
 | name       | VARCHAR   | NOT NULL | ユーザー名              |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
@@ -49,9 +49,12 @@ Things you may want to cover:
 |kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
+### Association
+has_and_belongs_to_many
+
 ### 2. 商品テーブル (items)
 
-| 列名          | データ型   | 制約     | 説明                |
+| Column      | Type   | Options     | 説明                |
 |---------------|-----------|----------|--------------------|
 | id            | INTEGER   | PRIMARY KEY | 商品ID           |
 | id: 1,name          | INTEGER   | NOT NULL | 商品名              |
@@ -64,11 +67,13 @@ Things you may want to cover:
 | days          | INTEGER   | NOT NULL | 発送日の目安         |
 | category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
+### Association
+has_many
 
 
 ## 3. 購入履歴テーブル (purchases)
 
-| 列名           | データ型   | 制約     | 説明                  |
+| Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
 | id             | INTEGER   | PRIMARY KEY | 購入履歴ID          |
 | buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
@@ -87,3 +92,6 @@ Things you may want to cover:
 |status          | STRING    | NOT NULL | 購入の進行状況          |
 |rating          | INTEGER   | NOT NULL | 取引の評価やレビュー情報 |
 |review          | STRING    | NOT NULL | 評価コメントやレビュー   |
+
+### Association
+has_and_belongs_to_many
