@@ -41,12 +41,9 @@ Things you may want to cover:
 
 | 列名       | データ型   | 制約     | 説明                 |
 |------------|-----------|----------|---------------------|
-| id         | INTEGER   | PRIMARY KEY | ユーザーID           |
 | name       | VARCHAR   | NOT NULL | ユーザー名              |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
 | encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
-| created_at    | TIMESTAMP | NOT NULL | 出品日時             |
-| updated_at    | TIMESTAMP | NOT NULL | 更新日時             |
 |phone_number   | STRING    | NOT NULL | 電話番号             |
 |full_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
 |kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
@@ -57,7 +54,7 @@ Things you may want to cover:
 | 列名          | データ型   | 制約     | 説明                |
 |---------------|-----------|----------|--------------------|
 | id            | INTEGER   | PRIMARY KEY | 商品ID           |
-| name          | INTEGER   | NOT NULL | 商品名              |
+| id: 1,name          | INTEGER   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
 | price         | INTEGER   | NOT NULL | 商品の価格           |
 | seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
