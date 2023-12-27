@@ -42,7 +42,7 @@ Things you may want to cover:
 | Column      | Type   | Options     | 説明                 |
 |------------|-----------|----------|---------------------|
 | name       | VARCHAR   | NOT NULL | ユーザー名              |
-| email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
+| email      | string   | null: false, unique: true | 
 | encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
 |surname_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
 |name_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
@@ -51,10 +51,8 @@ Things you may want to cover:
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
 ### Association
-- has_many :users
-- has_many : through: :users
-- has_many :messages
-
+- has_many :items
+- has_many : purchases
 ### 2. 商品テーブル (items)
 
 | Column      | Type   | Options     | 説明                |
@@ -62,7 +60,7 @@ Things you may want to cover:
 | name          | STRING   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
 | price         | INRGER   | NOT NULL | 商品の価格           |
-| user     | INTEGER   | NOT NULL | 出品者のユーザーID    |
+| user     | references   | null: false, foreign_key: true | 
 | category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
 | condition_id     | INTEGER    | NOT NULL | 商品の状態           |
 | availability_id | INTEGER   | NOT NULL | 送料                |
