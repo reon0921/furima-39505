@@ -51,8 +51,8 @@ Things you may want to cover:
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
 ### Association
-- has_many :room_users
-- has_many :rooms, through: :room_users
+- has_many :users
+- has_many : through: :users
 - has_many :messages
 
 ### 2. 商品テーブル (items)
@@ -62,12 +62,11 @@ Things you may want to cover:
 | name          | STRING   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
 | price         | INRGER   | NOT NULL | 商品の価格           |
-| seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
+| user     | INTEGER   | NOT NULL | 出品者のユーザーID    |
 | category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
 | condition_id     | INTEGER    | NOT NULL | 商品の状態           |
-| availability_id | STRING   | NOT NULL | 送料                |
+| availability_id | INTEGER   | NOT NULL | 送料                |
 | days_id         | STRING   | NOT NULL | 発送日の目安         |
-| category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
 ### Association
 has_and_belongs_to_many :tags 
@@ -79,11 +78,14 @@ has_and_belongs_to_many :tags
 |----------------|-----------|----------|----------------------|
 | buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
-| purchase_date  | TIMESTAMP | NOT NULL | 購入日時               |
-| amount         | INTEGER   | NOT NULL | 購入金額               |
-| postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
-| created_at     | TIMESTAMP | NOT NULL | 作成日時               |
-|seller_id       | INTEGER   | NOT NULL | 商品を出品したユーザーのIDを表す|
 
 ### Association
 has_and_belongs_to_many
+
+## 4. 宛先テーブル (address)
+
+| Column      | Type   | Options     | 説明                  |
+|----------------|-----------|----------|----------------------|
+| postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
+| email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
+| name          | STRING   | NOT NULL |    購入者の名前          |
