@@ -44,7 +44,6 @@ Things you may want to cover:
 | name       | VARCHAR   | NOT NULL | ユーザー名              |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
 | encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
-|phone_number   | STRING    | NOT NULL | 電話番号             |
 |surname_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
 |name_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
 |surname_kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
@@ -52,15 +51,17 @@ Things you may want to cover:
 | birthday      | DATE      | NOT NULL | 生年月日             |
 
 ### Association
-has_and_belongs_to_many
+- has_many :room_users
+- has_many :rooms, through: :room_users
+- has_many :messages
 
 ### 2. 商品テーブル (items)
 
 | Column      | Type   | Options     | 説明                |
 |---------------|-----------|----------|--------------------|
-| name          | INTEGER   | NOT NULL | 商品名              |
+| name          | STRING   | NOT NULL | 商品名              |
 | description   | TEXT      | NOT NULL | 商品の説明           |
-| price         | STRING   | NOT NULL | 商品の価格           |
+| price         | INRGER   | NOT NULL | 商品の価格           |
 | seller_id     | INTEGER   | NOT NULL | 出品者のユーザーID    |
 | category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
 | condition_id     | INTEGER    | NOT NULL | 商品の状態           |
@@ -69,7 +70,7 @@ has_and_belongs_to_many
 | category_id   | INTEGER   | FOREIGN KEY| カテゴリー         |
 
 ### Association
-has_many
+has_and_belongs_to_many :tags 
 
 
 ## 3. 購入履歴テーブル (purchases)
@@ -80,18 +81,9 @@ has_many
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
 | purchase_date  | TIMESTAMP | NOT NULL | 購入日時               |
 | amount         | INTEGER   | NOT NULL | 購入金額               |
-| card_number    | VARCHAR(16)| NOT NULL | カード番号            |
-| expiration_date| DATE      | NOT NULL | 有効期限               |
-| security_code  | VARCHAR(4)| NOT NULL | セキュリティコード       |
 | postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
 | created_at     | TIMESTAMP | NOT NULL | 作成日時               |
-| updated_at     | TIMESTAMP | NOT NULL | 更新日時               |
-| shipping_address| STRING   | NOT NULL | 配送先情報             |
 |seller_id       | INTEGER   | NOT NULL | 商品を出品したユーザーのIDを表す|
-|payment_method  | STRING    | NOT NULL | 支払方法               |
-|status          | STRING    | NOT NULL | 購入の進行状況          |
-|rating          | INTEGER   | NOT NULL | 取引の評価やレビュー情報 |
-|review          | STRING    | NOT NULL | 評価コメントやレビュー   |
 
 ### Association
 has_and_belongs_to_many
