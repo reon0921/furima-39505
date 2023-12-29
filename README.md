@@ -52,7 +52,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :purchases
-- has_many :user
+- has_many :items
 
 ### 2. 商品テーブル (items)
 
@@ -69,7 +69,7 @@ Things you may want to cover:
 |prefectures_id| integer |null: false | 都道府県 |
 
 ### Association
-- belongs_to :items
+- has_one:purchases
 - belongs_to :user
 
 
@@ -77,26 +77,29 @@ Things you may want to cover:
 
 |_Column_| Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-|user| integer   | null: false | 購入者のユーザーID      |
+|user| integer   | null: false, foreign_key: true | 購入者のユーザーID      |
 |item_id| integer   | null: false | 購入した商品のID        |
 
 
 ### Association
-- belongs_to :items
+- has_one :recipients
 - belongs_to :user
+has_one :recipients
 
 ## 4. 宛先テーブル（recipients）
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-|prefectures| integer |null: false | 都道府県 |
+|post code| integer |null: false | 郵便番号 |
+|prefecture_id| integer |null: false | 都道府県 |
 |municipalities| string |null: false | 市区町村 |
 |street_address| string | null: false | 番地 |
 |telephone_number| string | null: false | 電話番号 |
+|Building_name| string | null: false | 建物名 |
+|purchase_management| string | null: false | 購入管理テーブルの外部キー |
 
-ALTER TABLE purchase_history
-ADD building_name VARCHAR(255),
-ADD postal_code VARCHAR(10);
+### Association
+belongs_to :purchases
 
 
 
