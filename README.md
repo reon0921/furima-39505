@@ -65,11 +65,11 @@ Things you may want to cover:
 |category_id| integer   | null: false | 商品が所属するカテゴリ |
 |condition_id| integer    | null: false | 商品の状態     |
 |availability_id| integer   | null: false | 送料          |
-|expected_shipping date_id| integer  | null: false | 発送日の目安         |
-|prefectures_id| integer |null: false | 都道府県 |
+|expected_shipping_date_id| integer  | null: false | 発送日の目安         |
+|prefecture_id| integer |null: false | 都道府県 |
 
 ### Association
-- has_one:purchases
+- has_one :purchase
 - belongs_to :user
 
 
@@ -77,12 +77,12 @@ Things you may want to cover:
 
 |_Column_| Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-|user| integer   | null: false, foreign_key: true | 購入者のユーザーID      |
-|item_id| integer   | null: false | 購入した商品のID        |
+|user| references   | null: false, foreign_key: true | 購入者のユーザーID      |
+|item| references   | null: false | 購入した商品のID        |
 
 
 ### Association
-- has_one :recipients
+- has_one :recipient
 - belongs_to :user
 has_one :recipients
 
@@ -90,19 +90,13 @@ has_one :recipients
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-|post code| integer |null: false | 郵便番号 |
+|post_code| string |null: false | 郵便番号 |
 |prefecture_id| integer |null: false | 都道府県 |
 |municipalities| string |null: false | 市区町村 |
 |street_address| string | null: false | 番地 |
 |telephone_number| string | null: false | 電話番号 |
-|Building_name| string | null: false | 建物名 |
-|purchase_management| string | null: false | 購入管理テーブルの外部キー |
+|building_name| string | null: false | 建物名 |
+|purchase| references | null: false foreign_key: true| 購入管理テーブルの外部キー |
 
 ### Association
-belongs_to :purchases
-
-
-
-### Association
-- belongs_to :recipients
-- belongs_to :user
+belongs_to :purchase
