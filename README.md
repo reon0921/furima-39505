@@ -51,9 +51,8 @@ Things you may want to cover:
 |birthday| date     | null: false | 生年月日             |
 
 ### Association
-- has_many :users
-- has_many : through: :_users
-- has_many :messages
+- has_many :purchases
+- has_many :user
 
 ### 2. 商品テーブル (items)
 
@@ -66,9 +65,9 @@ Things you may want to cover:
 |category_id| integer   | null: false | 商品が所属するカテゴリ |
 |condition_id| integer    | null: false | 商品の状態     |
 |availability_id| integer   | null: false | 送料          |
-|Expected shipping date_id| string  | null: false | 発送日の目安         |
-|prefectures| string |null: false | 都道府県 |
- <option value="item3">商品</option> foreign_key: true
+|expected_shipping date_id| integer  | null: false | 発送日の目安         |
+|prefectures_id| integer |null: false | 都道府県 |
+
 ### Association
 - belongs_to :items
 - belongs_to :user
@@ -83,17 +82,21 @@ Things you may want to cover:
 
 
 ### Association
-- belongs_to :purchases
+- belongs_to :items
 - belongs_to :user
 
 ## 4. 宛先テーブル（recipients）
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-|prefectures| string |null: false | 都道府県 |
+|prefectures| integer |null: false | 都道府県 |
 |municipalities| string |null: false | 市区町村 |
-|street address| string | null: false | 番地 |
-|telephone number| string | null: false | 電話番号 |
+|street_address| string | null: false | 番地 |
+|telephone_number| string | null: false | 電話番号 |
+
+ALTER TABLE purchase_history
+ADD building_name VARCHAR(255),
+ADD postal_code VARCHAR(10);
 
 
 
