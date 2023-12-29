@@ -76,14 +76,22 @@ has_and_belongs_to_many :tags
 |----------------|-----------|----------|----------------------|
 | buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
 | item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
+ALTER TABLE purchases ADD FOREIGN KEY (buyer_id) REFERENCES users(user_id);
 
 ### Association
 has_and_belongs_to_many
 
-## 4. 宛先テーブル (address)
+## 4. 宛先テーブル（recipients）
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
 | postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
 | email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
 | name          | STRING   | NOT NULL |    購入者の名前          |
+| prefectures   | VARCHAR(50)型 | NOT NULL | 都道府県 |
+| municipalities | VARCHAR(50)型 | NOT NULL | 市区町村 |
+| street address | VARCHAR(100) | NOT NULL | 番地 |
+| Building name | VARCHAR(100) | NOT NULL | 建物名 |
+| telephone number | VARCHAR(20) | NOT NULL | 電話番号 |
+| 
+ALTER TABLE recipients customers ADD FOREIGN KEY  REFERENCES shipping_address_id:
