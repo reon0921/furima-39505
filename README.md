@@ -41,42 +41,59 @@ Things you may want to cover:
 
 | Column      | Type   | Options     | 説明                 |
 |------------|-----------|----------|---------------------|
-| name       | VARCHAR   | NOT NULL | ユーザー名              |
-| email      | string   | null: false, unique: true | 
-| encrypted_password   | VARCHAR   | NOT NULL | パスワード   |
-|surname_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
-|name_name      | NVARCHAR  |NOT NULL  | お名前(全角)         |
-|surname_kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
-|kana_name      |  NVARCHAR |NOT NULL  |  お名前カナ(全角)     |
-| birthday      | DATE      | NOT NULL | 生年月日             |
+|_name_| string   | null: false | ユーザー名              |
+|_email_| string   | null: false, unique: true | 
+|_encrypted_password_| string   | null: false | パスワード   |
+|_surname_name_| string | null: false  | お名前(全角)         |
+|_name_name_| string  |null: false  | お名前(全角)         |
+|_surname_kana_name_|  string | null: false  |  お名前カナ(全角)     |
+|_kana_name_|  string | null: false  |  お名前カナ(全角)     |
+|_birthday_| DATE      | null: false | 生年月日             |
 
 ### Association
-- has_many :items
-- has_many : purchases
+-CREATE TABLE users (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  ...
+);
 ### 2. 商品テーブル (items)
 
 | Column      | Type   | Options     | 説明                |
 |---------------|-----------|----------|--------------------|
-| name          | STRING   | NOT NULL | 商品名              |
-| description   | TEXT      | NOT NULL | 商品の説明           |
-| price         | INRGER   | NOT NULL | 商品の価格           |
-| user     | references   | null: false, foreign_key: true | 
-| category_id   | INTEGER   | NOT NULL | 商品が所属するカテゴリ |
-| condition_id     | INTEGER    | NOT NULL | 商品の状態           |
-| availability_id | INTEGER   | NOT NULL | 送料                |
-| days_id         | STRING   | NOT NULL | 発送日の目安         |
-
+|_name_| STRING   | null: false | 商品名              |
+|_description_| TEXT      | null: false | 商品の説明           |
+|_price_| INRGER   | null: false | 商品の価格           |
+|_user_| references   | null: false, foreign_key: true | 
+|_category_id_| INTEGER   | null: false | 商品が所属するカテゴリ |
+|_condition_id_| INTEGER    | null: false | 商品の状態           |
+|_availability_id_| INTEGER   | null: false | 送料                |
+|_Expected shipping date_id_| STRING   | null: false | 発送日の目安         |
+ <option value="item3">商品</option>　foreign_key: true
 ### Association
-has_and_belongs_to_many :tags 
+class Item < ApplicationRecord
+  has_and_belongs_to_many :carts
+  ...
+end
+
+class Cart < ApplicationRecord
+  has_and_belongs_to_many :items
+  ...
+end
+
 
 
 ## 3. 購入履歴テーブル (purchases)
 
-| Column      | Type   | Options     | 説明                  |
+|_Column_| Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-| buyer_id       | INTEGER   | NOT NULL | 購入者のユーザーID      |
-| item_id        | INTEGER   | NOT NULL | 購入した商品のID        |
+|_user_| INTEGER   | NOT NULL | 購入者のユーザーID      |
+|_item_id_| INTEGER   | NOT NULL | 購入した商品のID        |
 ALTER TABLE purchases ADD FOREIGN KEY (buyer_id) REFERENCES users(user_id);
+CREATE TABLE customers (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  ...
+);
 
 ### Association
 has_and_belongs_to_many
@@ -85,13 +102,9 @@ has_and_belongs_to_many
 
 | Column      | Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
-| postal_code    | VARCHAR(7)| NOT NULL | 郵便番号               |
-| email      | VARCHAR   | NOT NULL | ユーザーのメールアドレス  |
-| name          | STRING   | NOT NULL |    購入者の名前          |
-| prefectures   | VARCHAR(50)型 | NOT NULL | 都道府県 |
-| municipalities | VARCHAR(50)型 | NOT NULL | 市区町村 |
-| street address | VARCHAR(100) | NOT NULL | 番地 |
-| Building name | VARCHAR(100) | NOT NULL | 建物名 |
-| telephone number | VARCHAR(20) | NOT NULL | 電話番号 |
+|_prefectures_| string |null: false | 都道府県 |
+|_municipalities_| string |null: false | 市区町村 |
+|_street address_| string | null: false | 番地 |
+|_telephone number_| string | null: false | 電話番号 |
 | 
 ALTER TABLE recipients customers ADD FOREIGN KEY  REFERENCES shipping_address_id:
