@@ -65,8 +65,8 @@ Things you may want to cover:
 |_price_| INRGER   | null: false | 商品の価格           |
 |_user_| references   | null: false, foreign_key: true | 
 |_category_id_| INTEGER   | null: false | 商品が所属するカテゴリ |
-|_condition_id_| INTEGER    | null: false | 商品の状態           |
-|_availability_id_| INTEGER   | null: false | 送料                |
+|_condition_id_| INTEGER    | null: false | 商品の状態     |
+|_availability_id_| INTEGER   | null: false | 送料          |
 |_Expected shipping date_id_| STRING   | null: false | 発送日の目安         |
  <option value="item3">商品</option>　foreign_key: true
 ### Association
