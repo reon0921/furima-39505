@@ -78,14 +78,12 @@ Things you may want to cover:
 |_Column_| Type   | Options     | 説明                  |
 |----------------|-----------|----------|----------------------|
 |user| references   | null: false, foreign_key: true | 購入者のユーザーID      |
-|item| references   | null: false | 購入した商品のID        |
+|item| references   | foreign_key: true null: false | 購入した商品のID        |
 
 
 ### Association
 - has_one :recipient
 - belongs_to :user
-has_one :recipients
-
 ## 4. 宛先テーブル（recipients）
 
 | Column      | Type   | Options     | 説明                  |
