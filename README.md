@@ -84,7 +84,7 @@ Things you may want to cover:
 ### Association
 - has_one :recipient
 - belongs_to :user
-- has_one : items
+- has_one : item
 
 ## 4. 宛先テーブル（recipients）
 
@@ -95,7 +95,7 @@ Things you may want to cover:
 |municipalities| string |null: false | 市区町村 |
 |street_address| string | null: false | 番地 |
 |telephone_number| string | null: false | 電話番号 |
-|building_name| string | null: false | 建物名 |
+|building_name| string |  | 建物名 |
 |purchase| references | null: false foreign_key: true| 購入管理テーブルの外部キー |
 
 ### Association
