@@ -59,7 +59,7 @@ Things you may want to cover:
 | Column      | Type   | Options     | 説明                |
 |---------------|-----------|----------|--------------------|
 |name| string   | null: false | 商品名              |
-|description| text | null: false | 商品の説明           |
+|description| text | null: false | 商品の説明          |
 |price| integer   | null: false | 商品の価格           |
 |user| references   | null: false, foreign_key: true | 
 |category_id| integer   | null: false | 商品が所属するカテゴリ |
