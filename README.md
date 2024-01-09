@@ -99,4 +99,6 @@ Things you may want to cover:
 |purchase| references | null: false foreign_key: true| 購入管理テーブルの外部キー |
 
 ### Association
+DB設計
+belongs_to :purchase
 belongs_to :purchase
