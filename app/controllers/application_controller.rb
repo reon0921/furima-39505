@@ -11,16 +11,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      # ユーザーが正常に保存された場合の処理
-      redirect_to @user
-    else
-      # ユーザーの保存が失敗した場合の処理
-      render 'new'
-    end
-  end
 
   def basic_auth
     
