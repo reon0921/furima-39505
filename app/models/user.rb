@@ -1,11 +1,9 @@
 class User < ApplicationRecord
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-  validates :password_confirmation, presence: true
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
   #validate :password_match?
-  validates :surname_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :name_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :surname_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+  validates :name_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   validates :surname_kana_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :kana_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
   validates :birthday, presence: true
