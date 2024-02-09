@@ -4,13 +4,11 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-
   describe 'ユーザー新規登録' do
     it 'nameが空では登録できない' do
       user = User.new(name: '', email: 'test@example', password: '000000', password_confirmation: '000000')
       user.valid?
       expect(user.errors.full_messages).to include("Name can't be blank")
-    end
     end
     it 'emailが空では登録できない' do
       user = User.new(name: 'test', email: '', password: '000000', password_confirmation: '000000')
@@ -40,7 +38,7 @@ RSpec.describe User, type: :model do
       @user.encrypted_password = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Encrypted_password can't be blank")
-
+    end
       it "パスワードが6文字未満の場合、ユーザーは無効であること" do
         @user.encrypted_password = "abc12"
         @user.password_confirmation = "abc12"
@@ -113,5 +111,5 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
-
+    end
   end
