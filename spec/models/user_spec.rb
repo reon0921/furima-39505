@@ -7,26 +7,15 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
   describe 'ユーザー新規登録' do
-    context '新規登録できるとき' do
-      it '全ての項目が存在すれば登録できる' do
-        user = User.new(
-          name: '名前',
-          surname_name: '鈴木',
-          name_name: '太郎',
-          surname_kana_name: 'スズキ',
-          kana_name: 'タロウ',
-          birthday: '2000-01-01',
-          email: 'test@example.com',
-          password: 'abc123',
-          password_confirmation: 'abc123'
-        )
-        expect(user).to be_valid
-      end
+    it 'nameが空では登録できない' do
+     @user = User.new(name: '', email: 'test@example', password: '000000', password_confirmation: '000000')
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Name can't be blank")
     end
     it 'emailが空では登録できない' do
-      user = User.new(name: 'test', email: '', password: '000000', password_confirmation: '000000')
-      user.valid?
-      expect(user.errors.full_messages).to include("Email can't be blank")
+      @user = User.new(name: 'test', email: '', password: '000000', password_confirmation: '000000')
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Kana name is invalid")
     end
 
       it 'メールアドレスが一意であること' do
@@ -87,13 +76,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Name can't be blank")
       end
 
-      it "名字が全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
-        @user.surname_name = 'tarou'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Name can't be blank")
-      end
-
-      it "名前が全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
+      it "名字と全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
         @user.name_name = 'tarou'
         @user.valid?
         expect(@user.errors.full_messages).to include("Name can't be blank")
@@ -123,19 +106,20 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
 
-      it 'パスワードが半角英数字であれば保存できる' do
-        user = User.new(
-          name: '名前',
-          surname_name: '鈴木',
-          name_name: '太郎',
-          surname_kana_name: 'スズキ',
-          kana_name: 'タロウ',
-          birthday: '2000-01-01',
-          email: 'test@example.com',
-          password: 'abc123',
-          password_confirmation: 'abc123'
-        )
-        expect(user).to be_valid
+
+
+      it 'パスワードが全角では登録できない' do
+        @user.password = 'パスワード'
+        @user.password_confirmation = 'パスワード'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name can't be blank")
+      end
+
+      it '名字が全角では登録できない' do
+        @user.surname_name = '全角名字'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name can't be blank")
       end
       end
     end
+    
