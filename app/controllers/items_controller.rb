@@ -7,7 +7,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       # Saveが成功したときの処理（たとえば、リダイレクト）
-      redirect_to @item, notice: 'Successfully created.'
+      #redirect_to @item, notice: 'Successfully created.'
+      redirect_to root_path, notice: 'Successfully created.'
     else
       flash.now[:error] = @item.errors.full_messages
       render :new, status: :unprocessable_entity
