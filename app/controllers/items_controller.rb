@@ -6,8 +6,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # Saveが成功したときの処理（たとえば、リダイレクト）
-      #redirect_to @item, notice: 'Successfully created.'
       redirect_to root_path, notice: 'Successfully created.'
     else
       flash.now[:error] = @item.errors.full_messages
@@ -17,11 +15,10 @@ class ItemsController < ApplicationController
   
 
   private
-
-    def item_params
-      params.require(:item).permit(:name, :description, :price, :user, :category_id, :condition_id, :availability_id, :expected_shipping_date_id, :prefecture_id, :text)
+      def item_params
+        params.require(:item).permit(:name, :description, :price, :category_id, :condition_id, :availability_id, :expected_shipping_date_id, :prefecture_id, :text)
+      end
       #:title, :catch_copy, :concept, :image
       #name
 #|description price| |user|  category_id|  condition_id availability_id expected_shipping_date_id| integer  prefecture_id
     end
-end
