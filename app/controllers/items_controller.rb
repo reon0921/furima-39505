@@ -1,5 +1,10 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :create]
+
+  def index
+    @items = Item.all
+  end
+
   def new
     @item = Item.new
   end
@@ -13,8 +18,10 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   private
-      def item_params
-        params.require(:item).permit(:name, :description, :price, :category_id, :condition_id, :availability_id, :expected_shipping_date_id, :prefecture_id, :text)
-      end
-    end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :category_id, :condition_id, :availability_id, :expected_shipping_date_id, :prefecture_id, :text)
+  end
+end 
