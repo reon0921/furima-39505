@@ -5,13 +5,13 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item, user_id: user.id)
   end
 
-context '異常系' do 
+context '正常系' do 
   it "全ての項目が存在すれば登録できること" do
     expect(@item).to be_valid
   end
 end
 
-    context '正常系' do
+    context '異常系' do
   it "nameが空では登録できないこと" do
     @item.name = nil
     @item.valid?
