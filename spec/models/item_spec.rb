@@ -5,16 +5,20 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item, user_id: user.id)
   end
 
+context '異常系' do 
   it "全ての項目が存在すれば登録できること" do
     expect(@item).to be_valid
   end
+end
 
+    context '正常系' do
   it "nameが空では登録できないこと" do
     @item.name = nil
     @item.valid?
     expect(@item.errors.full_messages).to include("Name can't be blank")
   end
-
+end
+  
   it "descriptionが空では登録できないこと" do
     @item.description = nil
     @item.valid?
@@ -98,4 +102,11 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
   end
+  context '異常系' do
+    it 'userが紐づいていないと保存できないこと' do
+      @item = FactoryBot.build(:item, user: nil)
+      @item.valid?
+      expect(@item.errors.full_messages).to include("User must exist")
+    end
   end
+end
