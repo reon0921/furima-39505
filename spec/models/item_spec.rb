@@ -1,8 +1,7 @@
 require 'rails_helper'
-
+user = FactoryBot.create(:user)
 RSpec.describe Item, type: :model do
   before do
-    user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: user.id)
   end
 
@@ -56,5 +55,16 @@ RSpec.describe Item, type: :model do
     @item.prefecture_id = nil
     @item.valid?
     expect(@item.errors.full_messages).to include("Prefecture can't be blank")
-end
+  end
+
+  it '商品名が40文字以下なら有効であること' do
+    item = FactoryBot.build(:item, name: 'a' * 40)
+    expect(item).to be_valid
+  end
+
+
+  it '商品説明が1000文字以内なら有効であること' do
+    item = FactoryBot.build(:item, description: 'a' * 1000)
+    expect(item).to be_valid
+  end
 end

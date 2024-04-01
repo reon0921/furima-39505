@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_25_114742) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_19_113351) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,15 +40,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_25_114742) do
   end
 
   create_table "items", charset: "utf8", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "price"
-    t.bigint "user_id"
-    t.integer "category_id"
-    t.integer "condition_id"
-    t.integer "availability_id"
-    t.integer "expected_shipping_date_id"
-    t.integer "prefecture_id"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "price", null: false
+    t.bigint "user_id", null: false
+    t.integer "category_id", null: false
+    t.integer "condition_id", null: false
+    t.integer "availability_id", null: false
+    t.integer "expected_shipping_date_id", null: false
+    t.integer "prefecture_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
