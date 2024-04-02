@@ -1,5 +1,4 @@
 require 'rails_helper'
-user = FactoryBot.create(:user)
 RSpec.describe Item, type: :model do
   before do
     user = FactoryBot.create(:user)
