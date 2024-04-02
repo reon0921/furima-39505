@@ -2,6 +2,7 @@ require 'rails_helper'
 user = FactoryBot.create(:user)
 RSpec.describe Item, type: :model do
   before do
+    user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: user.id)
   end
 
@@ -17,7 +18,6 @@ end
     @item.valid?
     expect(@item.errors.full_messages).to include("Name can't be blank")
   end
-end
   
   it "descriptionが空では登録できないこと" do
     @item.description = nil
@@ -30,7 +30,7 @@ end
     @item.valid?
     expect(@item.errors.full_messages).to include("Price can't be blank")
   end
-  
+end
 
   it "category_idが空では登録できないこと" do
     @item.category_id = 1
@@ -39,25 +39,25 @@ end
   end
 
   it "condition_idが空では登録できないこと" do
-    @item.condition_id = nil
+    @item.condition_id =1
     @item.valid?
     expect(@item.errors.full_messages).to include("Condition can't be blank")
   end
 
   it "availability_idが空では登録できないこと" do
-    @item.availability_id = nil
+    @item.availability_id =1
     @item.valid?
     expect(@item.errors.full_messages).to include("Availability can't be blank")
   end
 
   it "expected_shipping_date_idが空では登録できない" do
-    @item.expected_shipping_date_id = nil
+    @item.expected_shipping_date_id =1
     @item.valid?
     expect(@item.errors.full_messages).to include("Expected shipping date can't be blank")
   end
 
   it "prefecture_idが空では登録できない" do
-    @item.prefecture_id = nil
+    @item.prefecture_id =1
     @item.valid?
     expect(@item.errors.full_messages).to include("Prefecture can't be blank")
   end
@@ -102,11 +102,10 @@ end
     @item.valid?
     expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
   end
-  context '異常系' do
+
     it 'userが紐づいていないと保存できないこと' do
       @item = FactoryBot.build(:item, user: nil)
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
     end
   end
-end
