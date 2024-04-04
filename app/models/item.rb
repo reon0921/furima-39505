@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   belongs_to :expected_shipping_date
   belongs_to :prefecture
   belongs_to :user
+
+  
   has_one_attached :image
   validates :name, presence: true
   validates :description, presence: true
@@ -23,5 +25,7 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :price, numericality: { only_integer: true }
   validates :image, presence: true
+  def sold_out?
+  end
   #validates :your_attribute, numericality: { only_integer: true }
 end
