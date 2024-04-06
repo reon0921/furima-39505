@@ -26,6 +26,11 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true }
   validates :image, presence: true
   def sold_out?
+    validates :content, presence: true, unless: :was_attached?
+
+  def was_attached?
+    self.image.attached?
+  end
   end
   #validates :your_attribute, numericality: { only_integer: true }
 end
