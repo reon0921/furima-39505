@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc)
+    @items = Item.all.select{ |item| item.image.attached? }
   end
 
   def new
@@ -19,7 +20,9 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+  def show
+    @item = Item.find(params[:id])
+  end
   private
 
 
