@@ -61,7 +61,7 @@ Things you may want to cover:
 |name| string   | null: false | 商品名              |
 |description| text | null: false | 商品の説明          |
 |price| integer   | null: false | 商品の価格           |
-|user| references   | null: false, foreign_key: true | 
+|user| references   | null: false, foreign_key: true |    
 |category_id| integer   | null: false | 商品が所属するカテゴリ |
 |condition_id| integer    | null: false | 商品の状態     |
 |availability_id| integer   | null: false | 送料          |
