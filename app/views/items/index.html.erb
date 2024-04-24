@@ -134,7 +134,21 @@
       <div class='item-img-content'>
         <%= image_tag item.image, class: "item-img" %>
 
-        <%# 商品が売れていればsold outを表示しましょう %>
+      <% if item.purchase.present? %>
+  <div class='sold-out'>
+    <span>Sold Out!!</span>
+  </div>
+<% end %>
+
+        <% @items.each do |変数| %>
+
+  <%# ①商品画像 %>
+  <%# ②「sold out」表示 %>
+  <%# ③商品名 %>
+  <%# ④商品の値段 %>
+  <%# ⑤商品の配送料負担 %>
+
+<% end %>
 
         <%# //商品が売れていればsold outを表示しましょう %>
 

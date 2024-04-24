@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :expected_shipping_date
   belongs_to :prefecture
   belongs_to :user
+  has_one :purchase
 
   
   has_one_attached :image
@@ -27,10 +28,9 @@ class Item < ApplicationRecord
   validates :image, presence: true
   def sold_out?
     validates :content, presence: true, unless: :was_attached?
-
+  end
   def was_attached?
     self.image.attached?
-  end
   end
   #validates :your_attribute, numericality: { only_integer: true }
 end

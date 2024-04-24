@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :restrict_edit, only: [:edit, :update, :destroy]
 
+
   def index
     @items = Item.all.order(created_at: :desc)
     @items = Item.all.select{ |item| item.image.attached? }
