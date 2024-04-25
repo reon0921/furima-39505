@@ -5,12 +5,12 @@ class DonationAddress
     validates :user_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :street_address
-    validates :telephone_number
+    validates :telephone_number, numericality: { only_integer: true }
     validates :municipalities, presence: true
-    validates :token, presence: true
     validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
     validates :telephone_number, format: { with: /\A\d{10,11}\z/, message: 'は10桁以上11桁以下の半角数字で入力してください' }
     validates :item_id
+    validates :token, presence: true
   end
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)

@@ -28,8 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    def redirect_if_sold
-      @item = Item.find(params[:id])
+     def redirect_if_sold
       if @item.order.present?
         redirect_to root_path
       end
