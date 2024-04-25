@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :redirect_if_sold_out, only: [:index,:create]
+  before_action :redirect_if_sold, only: [:index,:create]
   before_action :redirect_if_own_product, only: [:index]
   before_action :authenticate_user!, only: [:index,:create]
   before_action :redirect_if_sold, only: [:index,:create]
@@ -33,8 +33,8 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_if_sold
-    @item = Item.find(params[:id])
-    if @item.order.present?
+    @item = Item.find(params[:item_id])
+    if @item.purchase.present?
       redirect_to root_path
     end
   end
