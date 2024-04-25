@@ -1,8 +1,8 @@
 class PurchasesController < ApplicationController
-  before_action :redirect_if_sold, only: [:index,:create]
+  before_action :redirect_if_sold, only: [:index, :create]
   before_action :redirect_if_own_product, only: [:index]
-  before_action :authenticate_user!, only: [:index,:create]
-  before_action :redirect_if_sold, only: [:index,:create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])

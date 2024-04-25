@@ -8,12 +8,15 @@ RSpec.describe DonationAddress, type: :model do
   end
 
   context '全ての値が正しく入力されている場合' do
-    it '保存できること' do
+    it 'すべての項目が存在する時保存できること' do
+      expect(@donation_address).to be_valid 
     end
- it '建物名が空でも保存できること' do
-   @donation_address.building_name = ''
-   expect(@donation_address).to be_valid 
- end
+    it '建物名が空でも保存できること' do
+      @donation_address.building_name = ''
+      expect(@donation_address).to be_valid 
+    end
+  end
+  context '必須項目が欠けている場合' do
     it 'user_idが空だと保存できないこと' do
       @donation_address.user_id = nil
       @donation_address.valid?
