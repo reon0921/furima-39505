@@ -7,13 +7,18 @@ RSpec.describe DonationAddress, type: :model do
     @donation_address = FactoryBot.build(:donation_address, user_id: user.id, item_id: item.id)
   end
 
-  context '購入情報が保存できる場合' do
-    it '全ての値が正しく入力されていれば保存できること' do
-      expect(@donation_address).to be_valid
+  context '全ての値が正しく入力されている場合' do
+    it '保存できること' do
     end
-  end
-
-  context '購入情報が保存できない場合' do
+ it '建物名が空でも保存できること' do
+   @donation_address.building_name = ''
+   expect(@donation_address).to be_valid 
+ end
+    it 'user_idが空だと保存できないこと' do
+      @donation_address.user_id = nil
+      @donation_address.valid?
+      expect(@donation_address.errors.full_messages).to include("User can't be blank")
+    end
     it 'user_idが空だと保存できないこと' do
       @donation_address.user_id = nil
       @donation_address.valid?
@@ -77,10 +82,6 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.telephone_number = '123456789012'
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include('Telephone number は10桁以上11桁以下の半角数字で入力してください')
-    end
-    it '建物名が空でも保存できること' do
-        @donation_address.building_name = ''
-        expect(@donation_address).to be_valid 
     end
     it 'telephone_numberに半角数値以外の文字が含まれている場合保存できないこと' do
         @donation_address.telephone_number = 'abcd12345'
