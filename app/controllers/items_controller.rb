@@ -51,7 +51,7 @@ end
   private
 
   def set_item
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:id])
   end
 
   def restrict_edit
