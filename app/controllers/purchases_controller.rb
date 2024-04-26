@@ -36,12 +36,13 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:donation_address).permit(:prefecture_id,  :post_code,:municipalities,:street_address,:telephone_number,:building_name).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end
-  def redirect_if_own_product
-    if current_user == @item.user
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def redirect_if_sold
+    if @item.order.present?
       redirect_to root_path
     end
-  end
-  def set_item
-    @item = Item.find(params[:item_id])
   end
 end
