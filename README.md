@@ -103,5 +103,13 @@ Things you may want to cover:
 DB設計
 belongs_to :purchase
 
+1. 購入ページを表示させること
+→ビューファイルの記述の、カード情報の箇所を元に戻す。フリマの素材から再度該当の箇所をコピーして修正すると良い
 
-belongs_to :purchase
+２　購入処理ができること
+→マイグレーションファイルが追加で１つ
+→コントローラーのCreateアクションを修正
+→フォームオブジェクトのDonation Address、モデルPurchase、Recipientをそれぞれ修正
+→ビューファイルのHogeと書かれている箇所を全て修正
+
+pk_test_984eb60aa031f4eb82ab7721
