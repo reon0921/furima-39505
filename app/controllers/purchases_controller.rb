@@ -26,11 +26,7 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def redirect_if_sold
-    if @item.purchase.present?
-      redirect_to root_path
-    end
-  end
+ 
 
   private
   def purchase_params
@@ -38,6 +34,12 @@ class PurchasesController < ApplicationController
   end
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_if_sold
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def redirect_if_sold
