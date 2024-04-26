@@ -28,12 +28,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-     def redirect_if_sold
-      if @item.order.present?
-        redirect_to root_path
-      end
+    if @item.purchase.present?
+      redirect_to root_path
     end
-  end
+end
 
   def update
     if @item.update(item_params)
