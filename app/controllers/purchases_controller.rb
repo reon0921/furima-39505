@@ -5,13 +5,11 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new
   end
 
   def create
     Rails.logger.debug(purchase_params.inspect)
-    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new(purchase_params)
     if @donation_address.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -29,7 +27,6 @@ class PurchasesController < ApplicationController
   end
 
   def redirect_if_sold
-    @item = Item.find(params[:item_id])
     if @item.purchase.present?
       redirect_to root_path
     end
@@ -40,7 +37,6 @@ class PurchasesController < ApplicationController
     params.require(:donation_address).permit(:prefecture_id,  :post_code,:municipalities,:street_address,:telephone_number,:building_name).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end
   def redirect_if_own_product
-    @item = Item.find(params[:item_id])
     if current_user == @item.user
       redirect_to root_path
     end
