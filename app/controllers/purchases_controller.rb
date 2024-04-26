@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :redirect_if_sold, only: [:index, :create]
-  before_action :redirect_if_own_product, only: [:index]
+  before_action :redirect_if_sold, only: [:index]
   before_action :authenticate_user!, only: [:index, :create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -33,17 +33,11 @@ class PurchasesController < ApplicationController
     params.require(:donation_address).permit(:prefecture_id,  :post_code,:municipalities,:street_address,:telephone_number,:building_name).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def redirect_if_sold
     if @item.purchase.present?
-      redirect_to root_path
-    end
-  end
-
-  def redirect_if_sold
-    if @item.order.present?
       redirect_to root_path
     end
   end

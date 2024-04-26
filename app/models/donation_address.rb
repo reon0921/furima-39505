@@ -14,6 +14,6 @@ class DonationAddress
   end
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    recipient = Recipients.create(post_code: post_code, prefecture_id: prefecture_id,street_address: street_address, telephone_number: telephone_number,  building_name: building_name, purchase_id: purchase.id, municipalities: municipalities)
+    recipient = Recipient.create(post_code: post_code, prefecture_id: prefecture_id,street_address: street_address, telephone_number: telephone_number,  building_name: building_name, purchase_id: purchase.id, municipalities: municipalities)
   end
 end
