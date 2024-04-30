@@ -97,7 +97,6 @@ Things you may want to cover:
 |telephone_number| string | null: false | 電話番号 |
 |building_name| string |  | 建物名 |
 |purchase| references | null: false foreign_key: true| 購入管理テーブルの外部キー |
-
 ### Association
 
 DB設計

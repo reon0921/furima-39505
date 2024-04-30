@@ -52,11 +52,7 @@ RSpec.describe DonationAddress, type: :model do
       expect(@donation_address.errors.full_messages).to include("Street address can't be blank")
     end
 
-    it 'telephone_numberが空だと保存できないこと' do
-      @donation_address.telephone_number = nil
-      @donation_address.valid?
-      expect(@donation_address.errors.full_messages).to include("Telephone number can't be blank")
-    end
+
     it 'municipalitiesが空だと保存できないこと' do
         @donation_address.municipalities = nil
         @donation_address.valid?

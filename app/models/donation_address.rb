@@ -11,6 +11,7 @@ class DonationAddress
     validates :telephone_number, format: { with: /\A\d{10,11}\z/, message: 'は10桁以上11桁以下の半角数字で入力してください' }
     validates :item_id
     validates :token
+    validates :post_code, :prefecture_id, :municipalities, :street_address, :telephone_number, presence: true
   end
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)

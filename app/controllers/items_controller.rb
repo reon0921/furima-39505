@@ -2,12 +2,12 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :restrict_edit, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
 
-
-  def index
-    @items = Item.all.order(created_at: :desc)
-    @items = Item.all.select{ |item| item.image.attached? }
-  end
+      def index
+        @items = Item.all.order(created_at: :desc).select{ |item| item.image.attached? }
+        puts @items.inspect
+    end
 
   def new
     @item = Item.new
