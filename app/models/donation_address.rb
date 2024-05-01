@@ -10,9 +10,8 @@ class DonationAddress
     validates :street_address
     validates :municipalities
     validates :telephone_number, numericality: { only_integer: true, message: 'は10桁以上11桁以下の半角数字で入力してください' }
-    validates :prefecture_id, numericality: { only_integer: true, message: 'must be a number' }
   end
-
+  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
     recipient = Recipient.create(post_code: post_code, prefecture_id: prefecture_id, street_address: street_address, telephone_number: telephone_number,  building_name: building_name, purchase_id: purchase.id, municipalities: municipalities)
