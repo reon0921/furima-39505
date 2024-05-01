@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :redirect_if_own_product, only: [:index, :create]
+  before_action :redirect_if_sold_out, only: [:index, :create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @donation_address = DonationAddress.new
@@ -26,6 +27,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+  def redirect_if_sold_out
+    redirect_to root_path if @item.purchase.present?
+  end
+
   def purchase_params
     params.require(:donation_address).permit(:prefecture_id,  :post_code,:municipalities,:street_address,:telephone_number,:building_name).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end

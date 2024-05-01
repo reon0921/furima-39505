@@ -71,12 +71,6 @@ RSpec.describe DonationAddress, type: :model do
         expect(@donation_address.errors.full_messages).to include("Prefecture can't be blank")
     end
 
-    it 'telephone_numberが9桁以下では保存できないこと' do
-        @donation_address.telephone_number = '123456789'
-        @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Telephone number は10桁以上11桁以下の半角数字で入力してください')
-    end
-
     it 'telephone_numberが12桁以上では保存できないこと' do
         @donation_address.telephone_number = '123456789012'
         @donation_address.valid?

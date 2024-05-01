@@ -23,8 +23,7 @@ class Item < ApplicationRecord
   validates :availability_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :expected_shipping_date_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-  validates :price, numericality: { only_integer: true }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :image, presence: true
   def sold_out?
     validates :content, presence: true, unless: :was_attached?
@@ -32,5 +31,4 @@ class Item < ApplicationRecord
   def was_attached?
     self.image.attached?
   end
-  #validates :your_attribute, numericality: { only_integer: true }
 end
