@@ -107,4 +107,10 @@ end
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
     end
+    it "prefecture_idが空だと保存できないこと" do
+
+      @item.prefecture_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+    end
   end

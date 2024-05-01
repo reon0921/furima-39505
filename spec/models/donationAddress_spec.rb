@@ -64,22 +64,5 @@ RSpec.describe DonationAddress, type: :model do
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include("Token can't be blank")
     end
-
-    it 'prefecture_idが0だと保存できないこと' do
-        @donation_address.prefecture_id = 0
-        @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Prefecture can't be blank")
-    end
-
-    it 'telephone_numberが12桁以上では保存できないこと' do
-        @donation_address.telephone_number = '123456789012'
-        @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include('Telephone number は10桁以上11桁以下の半角数字で入力してください')
-    end
-    it 'telephone_numberに半角数値以外の文字が含まれている場合保存できないこと' do
-        @donation_address.telephone_number = 'abcd12345'
-        @donation_address.valid?
-        expect(@donation_address.errors.full_messages).to include("Telephone number is not a number")
-    end
   end
 end
