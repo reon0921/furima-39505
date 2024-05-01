@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :restrict_edit, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
       def index
         @items = Item.all.order(created_at: :desc).select{ |item| item.image.attached? }
@@ -50,9 +50,17 @@ end
 
   private
 
+  def move_to_index
+    if @item.purchase.present? || @item.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+
+
   def set_item
     @item = Item.find(params[:id])
   end
+  
 
   def restrict_edit
     if @item.user_id != current_user.id
